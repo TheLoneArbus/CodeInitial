@@ -2044,7 +2044,7 @@ newButton("Run Code",
                 if Remote:IsA("RemoteEvent") or Remote:IsA("UnreliableRemoteEvent") then
                      for x = 0 , 10 do
                      Remote:FireServer(unpack(selected.args))
-                     wait(0.01)
+                     wait(0.08)
                      end
                   
                     
