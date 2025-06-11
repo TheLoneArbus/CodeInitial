@@ -2010,6 +2010,66 @@ end
             - blacklist: (string[] | Instance[] (RemoteEvent) | Instance[] (RemoteFunction)) an array of blacklisted names and remotes
             - codebox: (Instance (TextBox)) the textbox that holds all the code- cleared often
 ]]
+
+newButton("Run10TIMES",
+    function() return "Click to execute code" end,
+    function()
+        local Remote = selected and selected.Remote
+        if Remote then
+            TextLabel.Text = "Executing..."
+            xpcall(function()
+                local returnvalue
+                if Remote:IsA("RemoteEvent") or Remote:IsA("UnreliableRemoteEvent") then
+                     for x = 0 , 10 do
+                     Remote:FireServer(unpack(selected.args))
+                     wait(0.2)
+                     end
+                  
+                    
+                    returnvalue = Remote:FireServer(unpack(selected.args))
+                elseif Remote:IsA("RemoteFunction") then
+                    returnvalue = Remote:InvokeServer(unpack(selected.args))
+                end
+
+                TextLabel.Text = ("Executed successfully!\n%s"):format(v2s(returnvalue))
+            end,function(err)
+                TextLabel.Text = ("Execution error!\n%s"):format(err)
+            end)
+            return
+        end
+        TextLabel.Text = "Source not found"
+    end
+)
+
+newButton("Run 2 TIMES",
+    function() return "Click to execute code" end,
+    function()
+        local Remote = selected and selected.Remote
+        if Remote then
+            TextLabel.Text = "Executing..."
+            xpcall(function()
+                local returnvalue
+                if Remote:IsA("RemoteEvent") or Remote:IsA("UnreliableRemoteEvent") then
+                     for x = 0 , 10 do
+                     Remote:FireServer(unpack(selected.args))
+                     wait(0.2)
+                     end
+                  
+                    
+                    returnvalue = Remote:FireServer(unpack(selected.args))
+                elseif Remote:IsA("RemoteFunction") then
+                    returnvalue = Remote:InvokeServer(unpack(selected.args))
+                end
+
+                TextLabel.Text = ("Executed successfully!\n%s"):format(v2s(returnvalue))
+            end,function(err)
+                TextLabel.Text = ("Execution error!\n%s"):format(err)
+            end)
+            return
+        end
+        TextLabel.Text = "Source not found"
+    end
+)
 -- Copies the contents of the codebox
 newButton(
     "Copy Code",
@@ -2044,7 +2104,7 @@ newButton("Run Code",
                 if Remote:IsA("RemoteEvent") or Remote:IsA("UnreliableRemoteEvent") then
                      for x = 0 , 10 do
                      Remote:FireServer(unpack(selected.args))
-                     wait(0.08)
+                     wait(0.2)
                      end
                   
                     
