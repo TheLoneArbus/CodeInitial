@@ -2011,7 +2011,7 @@ end
             - codebox: (Instance (TextBox)) the textbox that holds all the code- cleared often
 ]]
 
-newButton("Run10TIMES",
+newButton("Run 10x",
     function() return "Click to execute code" end,
     function()
         local Remote = selected and selected.Remote
@@ -2022,7 +2022,7 @@ newButton("Run10TIMES",
                 if Remote:IsA("RemoteEvent") or Remote:IsA("UnreliableRemoteEvent") then
                      for x = 0 , 10 do
                      Remote:FireServer(unpack(selected.args))
-                     wait(0.2)
+                     wait(0.05)
                      end
                   
                     
@@ -2041,7 +2041,7 @@ newButton("Run10TIMES",
     end
 )
 
-newButton("Run 2 TIMES",
+newButton("Run 2x",
     function() return "Click to execute code" end,
     function()
         local Remote = selected and selected.Remote
@@ -2050,7 +2050,7 @@ newButton("Run 2 TIMES",
             xpcall(function()
                 local returnvalue
                 if Remote:IsA("RemoteEvent") or Remote:IsA("UnreliableRemoteEvent") then
-                     for x = 0 , 10 do
+                     for x = 0 , 1 do
                      Remote:FireServer(unpack(selected.args))
                      wait(0.2)
                      end
@@ -2102,12 +2102,7 @@ newButton("Run Code",
             xpcall(function()
                 local returnvalue
                 if Remote:IsA("RemoteEvent") or Remote:IsA("UnreliableRemoteEvent") then
-                     for x = 0 , 10 do
                      Remote:FireServer(unpack(selected.args))
-                     wait(0.2)
-                     end
-                  
-                    
                     returnvalue = Remote:FireServer(unpack(selected.args))
                 elseif Remote:IsA("RemoteFunction") then
                     returnvalue = Remote:InvokeServer(unpack(selected.args))
